@@ -1,0 +1,40 @@
+plugins {
+ 	id 'nebula.optional-base' version '3.0.3'
+	id 'nebula.provided-base' version '3.0.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'nebula.provided-base'
+
+sourceCompatibility = 1.8
+
+ext {
+	pluginName = 'ParticleShapes'
+	bukkitVersion = '1.11.2-R0.1-SNAPSHOT'
+}
+
+task dist(dependsOn: [clean, jar]) {
+    group 'distribution'
+    description 'Deploys artifacts to distribution directories.'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+}
+
+dependencies {
+    provided group: 'org.bukkit', name: 'bukkit', version: bukkitVersion
+    provided group: 'org.spigotmc', name: 'spigot-api', version: bukkitVersion
+    testCompile 'junit:junit:4.12'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}

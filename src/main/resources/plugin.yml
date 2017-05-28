@@ -1,0 +1,8 @@
+name: ParticleShapes
+main: com.rafaskoberg.minecraft.particleshapes.ParticleShapes
+version: 1.0.0
+
+commands:
+  fill:
+    description: Fills the shape with particles. 
+    usage: /fill
